@@ -1,132 +1,201 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Справочник PascalABC.net</title>
-  <style>
-    body {
-      font-family: 'Times New Roman', serif;
-      background-color: #f4f4f4;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
-    header {
-      text-align: center;
-      background-color: #f4f4f4;
-      padding: 20px;
-    }
-    header img {
-      max-width: 500px;
-    }
-    .container {
-      margin: 20px;
-      padding: 20px;
-      background-color: #f4f4f4;
-      border: 1px solid #ccc;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    h1, h2, h3 {
-      font-family: 'Georgia', serif;
-      color: #555;
-    }
-    p, ul, ol {
-      font-size: 16px;
-    }
-    code {
-      font-family: 'Courier New', monospace;
-      background-color: #f1f1f1;
-      padding: 2px 5px;
-      border: 1px solid #ddd;
-      border-radius: 3px;
-      white-space: pre-wrap; /* Перенос текста внутри code */
-      word-break: break-word; /* Разрыв длинных строк */
-    }
-    pre {
-      background-color: #f1f1f1;
-      padding: 10px;
-      border: 1px solid #e1e1e1;
-      border-radius: 5px;
-      overflow-x: auto; /* Добавление горизонтальной прокрутки при необходимости */
-      white-space: pre-wrap; /* Перенос текста внутри pre */
-      word-break: break-word; /* Разрыв длинных строк */
-    }
-    a {
-      color: #0066cc;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    footer {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 14px;
-      color: #777;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Справочник PascalABC.net</title>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header img {
+            max-width: 35%;
+            height: auto;
+        }
+
+        .container {
+            margin: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Georgia', serif;
+            color: #555;
+            margin-top: 0;
+        }
+
+        p, ul, ol {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            background-color: #f8f8f8;
+            padding: 0.2rem 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        pre {
+            background-color: #f8f8f8;
+            padding: 1rem;
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #777;
+            padding: 1rem 0;
+            background-color: #ffffff;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            header img {
+                max-width: 80%;
+            }
+
+            .container {
+                margin: 10px;
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2, h3 {
+                font-size: 1.2rem;
+            }
+
+            p, ul, ol {
+                font-size: 0.9rem;
+            }
+
+            pre {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header img {
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            h2, h3 {
+                font-size: 1rem;
+            }
+
+            p, ul, ol {
+                font-size: 0.8rem;
+            }
+
+            pre {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
 </head>
 <body>
 <header>
-  <img src="pascal.png" alt="Логотип PascalABC.net">
-  <h1>Справочник PascalABC.net</h1>
+    <img src="pascal.png" alt="Логотип PascalABC.net">
+    <h1>Справочник PascalABC.net</h1>
 </header>
 <div class="container">
-  <h2>Основные команды и операторы</h2>
+    <h2>Основные команды и операторы</h2>
 
-  <h3>1. Оператор вывода данных</h3>
-  <p>Для вывода данных на экран используется оператор <code>Write</code> или <code>Writeln</code>.</p>
-  <ul>
-    <li><code>Write('Привет, мир!');</code> - вывод текста без перехода на новую строку.</li>
-    <li><code>Writeln('Привет, мир!');</code> - вывод текста с переходом на новую строку.</li>
-  </ul>
+    <h3>1. Оператор вывода данных</h3>
+    <p>Для вывода данных на экран используется оператор <code>Write</code> или <code>Writeln</code>.</p>
+    <ul>
+        <li><code>Write('Привет, мир!');</code> - вывод текста без перехода на новую строку.</li>
+        <li><code>Writeln('Привет, мир!');</code> - вывод текста с переходом на новую строку.</li>
+    </ul>
 
-  <h3>2. Оператор ввода данных</h3>
-  <p>Для ввода данных используется оператор <code>Read</code> или <code>Readln</code>.</p>
-  <ul>
-    <li><code>Read(a);</code> - считывает значение в переменную <code>a</code>.</li>
-    <li><code>Readln(b);</code> - считывает значение в переменную <code>b</code> и переходит на новую строку.</li>
-  </ul>
+    <h3>2. Оператор ввода данных</h3>
+    <p>Для ввода данных используется оператор <code>Read</code> или <code>Readln</code>.</p>
+    <ul>
+        <li><code>Read(a);</code> - считывает значение в переменную <code>a</code>.</li>
+        <li><code>Readln(b);</code> - считывает значение в переменную <code>b</code> и переходит на новую строку.</li>
+    </ul>
 
-  <h3>3. Условный оператор</h3>
-  <p>Условный оператор позволяет выполнять разные блоки кода в зависимости от условия.</p>
-  <pre>
+    <h3>3. Условный оператор</h3>
+    <p>Условный оператор позволяет выполнять разные блоки кода в зависимости от условия.</p>
+    <pre>
 if x > 0 then
     Writeln('Число положительное')
 else
     Writeln('Число отрицательное');
         </pre>
 
-  <h3>4. Циклы</h3>
-  <p>Циклы позволяют повторять выполнение блока кода несколько раз.</p>
-  <ul>
-    <li><strong>Цикл for:</strong></li>
-    <pre>
+    <h3>4. Циклы</h3>
+    <p>Циклы позволяют повторять выполнение блока кода несколько раз.</p>
+    <ul>
+        <li><strong>Цикл for:</strong></li>
+        <pre>
 for i := 1 to 10 do
     Writeln('Итерация ', i);
             </pre>
-    <li><strong>Цикл while:</strong></li>
-    <pre>
+        <li><strong>Цикл while:</strong></li>
+        <pre>
 while x > 0 do
 begin
     Writeln(x);
     x := x - 1;
 end;
             </pre>
-    <li><strong>Цикл repeat:</strong></li>
-    <pre>
+        <li><strong>Цикл repeat:</strong></li>
+        <pre>
 repeat
     Writeln('Введите положительное число:');
     Readln(x);
 until x > 0;
             </pre>
-  </ul>
+    </ul>
 
-  <h3>5. Массивы</h3>
-  <p>Массивы используются для хранения набора значений одного типа.</p>
-  <pre>
+    <h3>5. Массивы</h3>
+    <p>Массивы используются для хранения набора значений одного типа.</p>
+    <pre>
 var
     arr: array[1..5] of Integer;
 begin
@@ -141,9 +210,9 @@ begin
 end.
         </pre>
 
-  <h3>6. Процедуры и функции</h3>
-  <p>Процедуры и функции позволяют организовать код в виде повторно используемых блоков.</p>
-  <pre>
+    <h3>6. Процедуры и функции</h3>
+    <p>Процедуры и функции позволяют организовать код в виде повторно используемых блоков.</p>
+    <pre>
 procedure SayHello(name: String);
 begin
     Writeln('Привет, ', name, '!');
@@ -160,9 +229,9 @@ begin
 end.
         </pre>
 
-  <h3>7. Работа с файлами</h3>
-  <p>Для работы с файлами используются специальные команды.</p>
-  <pre>
+    <h3>7. Работа с файлами</h3>
+    <p>Для работы с файлами используются специальные команды.</p>
+    <pre>
 var
     f: Text;
     s: String;
@@ -182,9 +251,9 @@ begin
 end.
         </pre>
 
-  <h3>8. Графика</h3>
-  <p>PascalABC.net поддерживает работу с графикой через модуль <code>GraphABC</code>.</p>
-  <pre>
+    <h3>8. Графика</h3>
+    <p>PascalABC.net поддерживает работу с графикой через модуль <code>GraphABC</code>.</p>
+    <pre>
 uses GraphABC;
 
 begin
@@ -204,7 +273,7 @@ end.
         </pre>
 </div>
 <footer>
-  &copy; 2025 Справочник PascalABC.net. Все права защищены.
+    &copy; 2025 Справочник PascalABC.net. Все права защищены.
 </footer>
 </body>
 </html>
