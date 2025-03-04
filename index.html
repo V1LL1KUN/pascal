@@ -269,101 +269,58 @@ end.
     <h3>9. Для изменений</h3>
     <p>PascalABC.net поддерживает работу с копированием текста <code>PascalABC.net</code>.</p>
     <pre>
-program kosmos;
-uses GraphABC;
-
-const
-  CELL_SIZE = 20; // Размер клетки сетки
-  GRID_COLOR = clGray; // Цвет сетки
-  LINE_COLOR = clBrown; // Цвет линий
-  LINE_WIDTH = 2; // Толщина линий
-
-// Функция для преобразования координат сетки в координаты окна
-function gridToPixelX(gridX: integer): integer;
-begin
-  gridToPixelX := gridX * CELL_SIZE;
-end;
-
-function gridToPixelY(gridY: integer): integer;
-begin
-  gridToPixelY := gridY * CELL_SIZE;
-end;
-
-var
-  i: integer;
+program oreshnick;
+uses graphabc;
 
 begin
-  SetWindowSize(540, 420);
-  SetPenColor(LINE_COLOR);
-  SetPenWidth(LINE_WIDTH);
+  setwindowsize(540, 540);
+  setpencolor(clblack);
+  setpenwidth(3); // Thinner lines look more like the image
 
-  // Рисуем координатную сетку (опционально)
-  SetPenColor(GRID_COLOR);
-  SetPenWidth(1);
-  for i := 0 to 540 div CELL_SIZE do // 540 div 20 = 27
-  begin
-    Line(i * CELL_SIZE, 0, i * CELL_SIZE, 420);
-  end;
-  for i := 0 to 420 div CELL_SIZE do // 420 div 20 = 21
-  begin
-    Line(0, i * CELL_SIZE, 540, i * CELL_SIZE);
-  end;
+  // Rocket body
+  moveto(179, 59);
+  lineto(235, 91);
+  lineto(286, 245);
+  lineto(225, 279);
+  lineto(159, 120);
+  lineto(179, 59);
 
-  SetPenColor(LINE_COLOR);
-  SetPenWidth(LINE_WIDTH);
+  // Rocket wing 1
+  moveto(260, 170);
+  lineto(335, 190);
+  lineto(360, 230);
+  lineto(279, 250);
 
+  // Rocket wing 2
+  moveto(187, 195);
+  lineto(160, 240);
 
-  // * Рисование ракеты *
-  // Корпус ракеты (трапеция)
-  Line(gridToPixelX(8), gridToPixelY(8), gridToPixelX(14), gridToPixelY(8)); // 8*20 = 160, 8*20 = 160 | 14*20 = 280, 8*20 = 160
-  Line(gridToPixelX(14), gridToPixelY(8), gridToPixelX(16), gridToPixelY(22));
-  Line(gridToPixelX(16), gridToPixelY(22), gridToPixelX(8), gridToPixelY(22));
-  Line(gridToPixelX(8), gridToPixelY(22), gridToPixelX(8), gridToPixelY(8));
+  //Rocket flame
+  lineto(155, 297);
+  lineto(225, 277);
+  lineto(222, 343);
+  lineto(244, 315);
+  lineto(265, 375);
+  lineto(275, 315);
+  lineto(315, 367);
+  lineto(299, 298);
+  lineto(335, 315);
+  lineto(286, 245);
 
-  // "Крылья" ракеты
-  Line(gridToPixelX(8), gridToPixelY(22), gridToPixelX(4), gridToPixelY(32));
-  Line(gridToPixelX(4), gridToPixelY(32), gridToPixelX(8), gridToPixelY(28));
+  // Windows
+  circle(200, 125, 15); // Smaller circles for the windows
+  circle(220, 170, 15);
+  circle(240, 225, 15);
 
-  Line(gridToPixelX(16), gridToPixelY(22), gridToPixelX(20), gridToPixelY(32));
-  Line(gridToPixelX(20), gridToPixelY(32), gridToPixelX(16), gridToPixelY(28));
+  // Filling
+  floodfill(236, 110, clyellow);  // Filling around the rocket Yellow like in image
+  floodfill(250, 310, clpurple);  //Flame filling Purple
+  floodfill(290, 210, clyellow);  //Filling around the rocket Yellow like in image
+  floodfill(170, 265, clyellow);  //Filling around the rocket Yellow like in image
+  floodfill(200, 125, clyellow);  //Windows Yellow
+  floodfill(220, 170, clyellow);  //Windows Yellow
+  floodfill(240, 225, clyellow);  //Windows Yellow
 
-  // Двигатели
-  Line(gridToPixelX(10), gridToPixelY(32), gridToPixelX(11), gridToPixelY(40));
-  Line(gridToPixelX(11), gridToPixelY(40), gridToPixelX(12), gridToPixelY(32));
-
-  Line(gridToPixelX(13), gridToPixelY(32), gridToPixelX(14), gridToPixelY(40));
-  Line(gridToPixelX(14), gridToPixelY(40), gridToPixelX(15), gridToPixelY(32));
-
-  // Верхняя часть ракеты
-  Line(gridToPixelX(8), gridToPixelY(8), gridToPixelX(12), gridToPixelY(4));
-  Line(gridToPixelX(12), gridToPixelY(4), gridToPixelX(14), gridToPixelY(8));
-
-  // Иллюминаторы
-  Circle(gridToPixelX(12), gridToPixelY(12), 10);
-  Circle(gridToPixelX(12), gridToPixelY(17), 10);
-  Circle(gridToPixelX(12), gridToPixelY(6), 10);
-
-
-  // * Рисование звезд *
-  // Звезда слева внизу
-  Line(gridToPixelX(2), gridToPixelY(28), gridToPixelX(4), gridToPixelY(30));
-  Line(gridToPixelX(4), gridToPixelY(30), gridToPixelX(6), gridToPixelY(28));
-  Line(gridToPixelX(6), gridToPixelY(28), gridToPixelX(4), gridToPixelY(26));
-  Line(gridToPixelX(4), gridToPixelY(26), gridToPixelX(2), gridToPixelY(28));
-  Line(gridToPixelX(4), gridToPixelY(26), gridToPixelX(4), gridToPixelY(32));
-  Line(gridToPixelX(4), gridToPixelY(32), gridToPixelX(4), gridToPixelY(26));
-
-  // * Рисование луны *
-  Arc(gridToPixelX(45), gridToPixelY(8), 30, 120, 300); // Центр, радиус, начальный угол, конечный угол
-
-  // * Рисование планет (окружности) *
-  Circle(gridToPixelX(2), gridToPixelY(2), 10);     // Верхняя левая
-  Circle(gridToPixelX(6), gridToPixelY(16), 10);   // В центре
-  Circle(gridToPixelX(17), gridToPixelY(2), 10);  //В верхнем правом углу
-  Circle(gridToPixelX(17), gridToPixelY(36), 10);   //Средний правый
-  Circle(gridToPixelX(4), gridToPixelY(36), 10);   //Нижний левый
-  Circle(gridToPixelX(25), gridToPixelY(28), 10); //Правый нижний
-  Circle(gridToPixelX(25), gridToPixelY(20), 10); //Правый нижний
 end.
         </pre>
 </div>
