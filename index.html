@@ -269,58 +269,88 @@ end.
     <h3>9. Для изменений</h3>
     <p>PascalABC.net поддерживает работу с копированием текста <code>PascalABC.net</code>.</p>
     <pre>
-program oreshnick;
-uses graphabc;
+program Duck;
+
+uses GraphABC;
+
+var
+  i: integer;
 
 begin
-  setwindowsize(540, 540);
-  setpencolor(clblack);
-  setpenwidth(3); // Thinner lines look more like the image
+  SetWindowSize(600, 600); // Устанавливаем размер окна
 
-  // Rocket body
-  moveto(179, 59);
-  lineto(235, 91);
-  lineto(286, 245);
-  lineto(225, 279);
-  lineto(159, 120);
-  lineto(179, 59);
+  // Ось координат для удобства (можно убрать)
+  Line(0, ClientHeight div 2, ClientWidth, ClientHeight div 2);
+  Line(ClientWidth div 2, 0, ClientWidth div 2, ClientHeight);
 
-  // Rocket wing 1
-  moveto(260, 170);
-  lineto(335, 190);
-  lineto(360, 230);
-  lineto(279, 250);
+  //  Функция для преобразования координат графика в экранные
+  procedure DrawPoint(x, y: real);
+  begin
+      MoveTo(Round(ClientWidth div 2 + x * 50), Round(ClientHeight div 2 - y * 50));
+  end;
 
-  // Rocket wing 2
-  moveto(187, 195);
-  lineto(160, 240);
+  procedure DrawLineTo(x, y: real);
+  begin
+      LineTo(Round(ClientWidth div 2 + x * 50), Round(ClientHeight div 2 - y * 50));
+  end;
 
-  //Rocket flame
-  lineto(155, 297);
-  lineto(225, 277);
-  lineto(222, 343);
-  lineto(244, 315);
-  lineto(265, 375);
-  lineto(275, 315);
-  lineto(315, 367);
-  lineto(299, 298);
-  lineto(335, 315);
-  lineto(286, 245);
+  //  * ТЕЛО УТКИ *
+  SetPenColor(clBlack);
+  SetBrushColor(clYellow);
+  FloodFill(0,0,clYellow); // Заливка фона
 
-  // Windows
-  circle(200, 125, 15); // Smaller circles for the windows
-  circle(220, 170, 15);
-  circle(240, 225, 15);
+  DrawPoint(-3,0);
+  SetPenWidth(3);
+  DrawLineTo(-1,2);
+  DrawLineTo(3,2);
+  DrawLineTo(5,0);
+  DrawLineTo(4,-2);
+  DrawLineTo(-4,-2);
+  DrawLineTo(-3,0);
+  FloodFill(0,0,clYellow); //Заливка
 
-  // Filling
-  floodfill(236, 110, clyellow);  // Filling around the rocket Yellow like in image
-  floodfill(250, 310, clpurple);  //Flame filling Purple
-  floodfill(290, 210, clyellow);  //Filling around the rocket Yellow like in image
-  floodfill(170, 265, clyellow);  //Filling around the rocket Yellow like in image
-  floodfill(200, 125, clyellow);  //Windows Yellow
-  floodfill(220, 170, clyellow);  //Windows Yellow
-  floodfill(240, 225, clyellow);  //Windows Yellow
+   //*ШЕЯ И ГОЛОВА*
+  DrawPoint(-1,2);
+  DrawLineTo(-1,4);
+  DrawLineTo(1,4);
+  DrawLineTo(1,5);
+  DrawLineTo(2,5);
+  DrawLineTo(2,4);
+  DrawLineTo(3,4);
+  DrawLineTo(3,2);
+  FloodFill(0,0,clYellow); //Заливка
 
+   //*КЛЮВ*
+  SetPenColor(clBlack);
+  SetBrushColor(clRed);
+  DrawPoint(2,5);
+  DrawLineTo(3,5);
+  DrawLineTo(3,4);
+  DrawLineTo(2,5);
+  FloodFill(0,0,clRed); //Заливка
+
+  //* ЛАПКИ *
+  SetPenColor(clBlack);
+  SetBrushColor(clRed);
+  //Левая лапка
+  DrawPoint(-1,-2);
+  DrawLineTo(-2,-2);
+  DrawLineTo(-2,-3);
+  DrawLineTo(-1,-2);
+  FloodFill(0,0,clRed); //Заливка
+    //Правая лапка
+  DrawPoint(3,-2);
+  DrawLineTo(2,-2);
+  DrawLineTo(2,-3);
+  DrawLineTo(3,-2);
+  FloodFill(0,0,clRed); //Заливка
+
+  //* ГЛАЗ *
+  SetPenColor(clBlack);
+  SetBrushColor(clBlack);
+  circle(Round(ClientWidth div 2 + 2.5 * 50), Round(ClientHeight div 2 - 4.5 * 50), 5);
+
+  ReadLn; //Чтобы окно не закрылось сразу
 end.
         </pre>
 </div>
